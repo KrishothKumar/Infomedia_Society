@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/button.css' %}">
+  <form>
+  {% if user.is_authenticated %}
+    <input class="MyButton" type="button" value="Creat_post" onclick="window.location.href='post'" />
+  <input class="MyButton" type="button" value="log out" onclick="window.location.href='logout'" />
+  {% else %}
+    <input class="MyButton" type="button" value="Sign In" onclick="window.location.href='login'" />
+    <input class="MyButton" type="button" value="Sign Up" onclick="window.location.href='register'" />
+  {% endif %}
+  </form>
+{% endblock %}

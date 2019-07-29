@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js">
+  $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+  });
+  var test = $('#test');
+  $(test).select2({
+    data:[
+      {id:0,text:"enhancement"},
+      {id:1,text:"bug"},
+      {id:2,text:"duplicate"},
+      {id:3,text:"invalid"},
+      {id:4,text:"wontfix"}
+    ],
+    multiple: true,
+    width: "300px"
+  });
+  </script>
+  <!-- <script language="JavaScript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/js/jquery-1.2.6.min.js"></script>
+  <script language="JavaScript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+  <script language="JavaScript" type="text/javascript" src="<?php echo get_option('siteurl') ?>/js/sprinkle.js"></script> -->
+</head>
+<body>
+  <form action="register" method="post">
+    {% csrf_token %}
+
+    <input type="text" name="first_name" placeholder="First Name"/><br>
+    <input type="text" name="last_name" placeholder="Last Name"/><br>
+    <input type="text" name="username" placeholder="Username"/><br>
+    <input type="email" name="e_mail" placeholder="some@xyz.com"/><br>
+    <input type="text" name="skills" placeholder="Skills"/><br>
+
+    <div class="row">
+      <!-- <input class="select2-search__field" type="search" tabindex="0" autocomplete="off"
+      autocorrect="off" autocapitalize="off" spellcheck="false" role="textbox" aria-autocomplete="list"
+      placeholder="Select a State" style="width: 1138px;"> -->
+      <!-- <select class="select2-results__options select2-selection--multiple
+      form-control" name="states[]" multiple="multiple"> <!--js-example-basic-multiple  -->
+      <!-- <input type="search" id="test" /> -->
+<input type="text" id="test" autocomplete="off" class="select2-input"/>
+      <select class="js-example-basic-multiple" name="states[]" multiple="multiple">
+        <option selected="selected">orange</option>
+        <option>white</option>
+        <option selected="selected">purple</option>
+      </select>
+    </div>
+
+    <input type="password" name="password1" placeholder="Password"/><br>
+    <input type="password" name="password2" placeholder="Conform_password"/><br>
+    <input type="submit"/>
+  </form>
+  <div>
+    {% for message in messages %}
+    <h4>{{message}}</h4>
+    {% endfor %}
+  </div>
+
+
+
+  <!-- <script src="js/custom.js" type="text/javascript">
+  // $(document).ready(function() {
+  //   $('.js-example-basic-multiple').select2();
+  // });
+  // </script> -->
+</body>
+</html>

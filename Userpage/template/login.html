@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+</head>
+<body>
+
+  <form action="" method="post">
+    {% csrf_token %}
+
+    <input type="text" name="username" placeholder="E-mail id"/><br>
+    <input type="password" id ="mypassword" name="password" placeholder="Password"/>
+    <span class="eye" onclick="myfuction()">
+      <i id="hide1" class = "fa fa-eye" style="display: none;"></i>
+      <i id="hide2" class = "fa fa-eye-slash" style= "display: block;"></i>
+    </span>
+    <br>
+    <input type="submit" value="Sig in"/><br>
+
+  </form>
+  <div>
+    {% for message in messages %}
+    <h4>{{message}}</h4>
+    {% endfor %}
+  </div>
+
+  <script>
+  function myfuction(){
+    var x = document.getElementById("mypassword");
+    var y = document.getElementById("hide1");
+    var z = document.getElementById("hide2");
+
+    if (x.type ==="password"){
+      x.type= "text";
+      y.style.display = "block";
+      z.style.display = "none";
+    }
+    else{
+      x.type= "password";
+      y.style.display = "none";
+      z.style.display = "block";
+    }
+
+  }
+  </script>
+</body>
+</html>
