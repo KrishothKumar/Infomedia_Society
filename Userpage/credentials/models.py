@@ -76,3 +76,9 @@ class Register(AbstractBaseUser):
     #
     # # Simplest possible answer: All admins are staff
     #     return self.is_staff
+
+
+class CodePost(models.Model):
+    description = models.TextField()
+    name = models.CharField(max_length=255)
+    ts = models.DateField(auto_now=True)
