@@ -33,7 +33,7 @@ def register(request):
         last_name = request.POST['last_name']
         username = request.POST['username']
         e_mail = request.POST['e_mail']
-        skills = request.POST['skills']
+        # skills = request.POST['skills']
         password1 = request.POST['password1']
         password2 = request.POST['password1']
 
@@ -51,7 +51,7 @@ def register(request):
             else:
                 user = Register.objects.create_user(e_mail=e_mail, password= password1,
                                                     first_name=first_name, last_name =last_name,
-                                                    username= username, skills= skills)
+                                                    username= username)
                 user.save()
                 messages.info(request, 'Sign Up successfully')
                 return redirect('/')
