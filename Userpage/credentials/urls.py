@@ -6,7 +6,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html') , name= "home"),
     path('login', user_management.login, name='login'),
     path('logout', user_management.logout, name='logout'),
-    path('register', user_management.register, name='register'),
+    path('signup', user_management.register, name='register'),
 
 
 ]
