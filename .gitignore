@@ -3,3 +3,4 @@ migrations
 __pycache__
 *.pyc
 db.sqlite3
+Userpage/db.sqlite3
