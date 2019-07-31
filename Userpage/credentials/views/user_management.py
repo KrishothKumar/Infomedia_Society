@@ -14,8 +14,7 @@ def login(request):
 
         if user:
             auth.login(request, user)
-            messages.info(request, "Login successfully")
-            return redirect('/')
+            return redirect('/activities')
 
         else:
 
@@ -24,7 +23,7 @@ def login(request):
 
     else:
 
-        return render(request, 'login.html')
+        return render(request, 'home.html')
 
 def register(request):
     if request.method =="POST":

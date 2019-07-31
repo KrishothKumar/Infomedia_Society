@@ -64,7 +64,6 @@
 
   .panel {
     margin: 0px auto;
-    width: 350px;
     background-color: #fff;
     border: 1px solid #7d727282;
     border-radius: 4px;
@@ -106,9 +105,9 @@
   {% endif %} -->
 
   <div class="col-md-4 col-md-offset-4 center-block">
-    <div class="login-panel panel panel-default ">
+    <div class="login-panel panel col-sm-10">
       <div class="panel-heading">
-        <h3 class="panel-title">Welcome to the APP</h3>
+        <h4 class="panel-title">Welcome to the APP</h4>
       </div>
       <div class="panel-body">
         <form action="login" method="POST">
@@ -135,8 +134,8 @@
               </label>
             </div>
             <!-- Change this to a button or input when using this as a form -->
-            <input class="btn btn-lg btn-success btn-block" type="submit" id="login" value="Login">
-            <label class="pull-right">
+            <input class="btn btn-primary btn-success btn-block" type="submit" id="login" value="Login">
+            <label class="pull-right center-block">
               <a href="/signup" class="">Don't have your account ?</a>
             </label>
           </fieldset>
@@ -146,6 +145,13 @@
     </div>
   </div>
 </div>
+
+<div class="col-md-4 col-md-offset-4 center-block">
+  {% for message in messages %}
+  <h4>{{message}}</h4>
+  {% endfor %}
+</div>
+
 <script>
   function myfuction(){
     var x = document.getElementById("login-password");
