@@ -19,21 +19,22 @@
   }
   </style>
 
-  <title>Hello, world!</title>
+  <title>Login</title>
   {% block title %}
   {% endblock %}
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <ul class="navbar-nav">
+  <nav class="navbar  navbar-light bg-light">
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav float-right">
       <li class="nav-item">
-        <a class="navbar-brand" href="#">Greek Developers</a>
+        <a class="navbar-brand " href="/logout">Log out</a>
       </li>
     </ul>
-    {% if user.is_authenticated %}
+    {% else%}
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="navbar-brand" href="/logout">Log out</a>
+        <a class="navbar-brand" href="/">Greek Developers</a>
       </li>
     </ul>
     {% endif %}
