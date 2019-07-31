@@ -1,7 +1,10 @@
 {% extends 'base.html'%}
 {% load static %}
+{% load humanize %}
 {% block css %}
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="{% static 'css/activities.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -9,46 +12,111 @@
         <div class="col-md-12 mt-3">
             <form method="post" id="jobdescription-form" role="form" action="activities">
                 <!-- Job Description -->
-                    <div class="form-group row">
-                        <!-- <label class="col-sm-2 col-form-label"> Job Description <span class="red">*</span></label> -->
-                        <div class="col-sm-12">
-                            <!-- <textarea class="form-control" id="job_description_1" name="job_description" rows="6"></textarea> -->
+                <div class="form-group row">
+                    <!-- <label class="col-sm-2 col-form-label"> Job Description <span class="red">*</span></label> -->
+                    <div class="col-sm-12">
+                        <textarea class="form-control" id="job_description_1" name="job_description" rows="6"></textarea>
 
-                            <a class="btn btn-info btn-md mt-1 float-right" style="padding:0.375rem 0.75rem;" onclick="submit_post()">
-                                <i class="fas fa-plus fa-sm">&nbsp;&nbsp; Post</i>
-                            </a>
-                        </div>
+                        <a class="btn btn-info btn-md mt-1 float-right" style="padding:0.375rem 0.75rem;" onclick="submit_post('job_post')">
+                            <i class="fas fa-plus fa-sm">&nbsp;&nbsp; Post</i>
+                        </a>
                     </div>
-                    {% for post in rendered_data %}
-                    <div class="form-group row">
-                        <!-- <label class="col-sm-2 col-form-label"> Job Description <span class="red">*</span></label> -->
+                </div>
+
+                <div class="form-group row">
+                {% for post in rendered_data %}
+                    <div class="container bootstrap snippet">
                         <div class="col-sm-12">
-                            <div class="card border-primary mb-3">
-                                <div class="card-header bg-secondary">
-                                    <div style="color: #ffffff;">
-                                        By - {{ post.user }}
+                            <div class="panel panel-white post panel-shadow mt-2 mb-2">
+                                <div class="post-heading">
+                                    <div class="pull-left image">
+                                        <img src="https://bootdey.com/img/Content/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                                    </div>
+
+                                    <a class="float-right" >
+                                        <i class="fas fa-pen"></i>
+                                    </a>
+
+                                    <div class="pull-left meta">
+                                        <div class="title h5">
+                                            <a href="#"><b> {{ post.user }} </b></a>
+                                            made a post.
+                                            <h6 class="text-muted time"> {{ post.posted_time|naturaltime }} </h6>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="card-body">
-                                    {{ post.description }}
+                                <div class="post-description">
+                                    <p> {{ post.description }} </p>
+                                    <div class="stats">
+                                        <a href="#" class="btn btn-default stat-item">
+                                            <i class="fa fa-thumbs-up icon"></i> {{ post.like_count }}
+                                        </a>
+                                        <a href="#" class="btn btn-default stat-item">
+                                            <i class="fa fa-share icon"></i> {{ post.share_count }}
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="card-footer bg-transparent">
-                                    By - {{ post.user }}
+                                <div class="post-footer">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="Add a comment" type="text" style="border-radius: 1rem;">
+                                        <span class="input-group-addon" style="font-size: 1.8rem;">
+                                            <a href="#"><i class="fa fa-edit"></i></a>
+                                        </span>
+                                    </div>
+                                    <ul class="comments-list">
+                                        <li class="comment">
+                                            <a class="pull-left" href="#">
+                                                <img class="avatar" src="https://bootdey.com/img/Content/user_1.jpg" alt="avatar">
+                                            </a>
+                                            <div class="comment-body">
+                                                <div class="comment-heading">
+                                                    <h4 class="user">Gavino Free</h4>
+                                                    <h5 class="time">5 minutes ago</h5>
+                                                </div>
+                                                <p>Sure, oooooooooooooooohhhhhhhhhhhhhhhh</p>
+                                            </div>
+                                            <ul class="comments-list">
+                                                <li class="comment">
+                                                    <a class="pull-left" href="#">
+                                                        <img class="avatar" src="https://bootdey.com/img/Content/user_3.jpg" alt="avatar">
+                                                    </a>
+                                                    <div class="comment-body">
+                                                        <div class="comment-heading">
+                                                            <h4 class="user">Ryan Haywood</h4>
+                                                            <h5 class="time">3 minutes ago</h5>
+                                                        </div>
+                                                        <p>Relax my friend</p>
+                                                    </div>
+                                                </li>
+                                                <li class="comment">
+                                                    <a class="pull-left" href="#">
+                                                        <img class="avatar" src="https://bootdey.com/img/Content/user_2.jpg" alt="avatar">
+                                                    </a>
+                                                    <div class="comment-body">
+                                                        <div class="comment-heading">
+                                                            <h4 class="user">Gavino Free</h4>
+                                                            <h5 class="time">3 minutes ago</h5>
+                                                        </div>
+                                                        <p>Ok, cool.</p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
+                {% endfor %}
+                </div>
             </form>
         </div>
     </main>
 {% endblock %}
 {% block script %}
     <script type="text/javascript">
-        function submit_post(){
-            alert("Hello! I am an alert box!!");
+        function submit_post(message){
             $('form#jobdescription-form').submit();
         }
-
     </script>
 {% endblock %}

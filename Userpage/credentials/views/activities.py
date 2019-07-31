@@ -10,12 +10,15 @@ class show_activities(APIView):
         data = []
         values = {}
         try:
-            posts = CodePost.objects.all().order_by('ts')
+            posts = CodePost.objects.all().order_by('-ts')
             for post in posts:
                 values = {
                     'description': post.description,
-                    'user': post.name,
-                    'posted_time': post.ts
+                    'user': post.user,
+                    'posted_time': post.ts,
+                    'updated_time': post.ets,
+                    'like_count': post.like_count,
+                    'share_count': post.share_count,
                 }
                 data.append(values)
         except Exception as e:
@@ -28,9 +31,9 @@ class show_activities(APIView):
 
         try:
             post = CodePost()
+            post.user = str('Jayanth') + ' ' + str('Nagaraj')
             post.description = request.POST['job_description']
             # post.name = str(request.user.first_name) + ' ' + str(request.user.last_name)
-            post.name = str('Jayanth') + ' ' + str('Nagaraj')
             post.save()
         except Exception as e:
             print(e)

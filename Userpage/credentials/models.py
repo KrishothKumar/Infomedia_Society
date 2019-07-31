@@ -79,6 +79,29 @@ class Register(AbstractBaseUser):
 
 
 class CodePost(models.Model):
+    slno = models.AutoField(primary_key=True)
     description = models.TextField()
-    name = models.CharField(max_length=255)
-    ts = models.DateField(auto_now=True)
+    user = models.CharField(max_length=255)
+    ts = models.DateTimeField(auto_now_add=True)
+    ets = models.DateTimeField(auto_now=True)
+    like_count = models.IntegerField(default=0)
+    share_count = models.IntegerField(default=0)
+    is_deleted = models.BooleanField(default=False)
+
+class Comments(models.Model):
+    slno = models.AutoField(primary_key=True)
+    post_id = models.ForeignKey(CodePost, on_delete=models.CASCADE)
+    comments = models.TextField()
+    user = models.CharField(max_length=255)
+    ts = models.DateTimeField(auto_now_add=True)
+    ets = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
+
+class Reply(models.Model):
+    slno = models.AutoField(primary_key=True)
+    comment_id = models.ForeignKey(Comments, on_delete=models.CASCADE)
+    reply = models.TextField()
+    user = models.CharField(max_length=255)
+    ts = models.DateTimeField(auto_now_add=True)
+    ets = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
