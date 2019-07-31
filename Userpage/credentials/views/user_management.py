@@ -4,6 +4,7 @@ from django.contrib.auth.models import auth
 from django.contrib import messages
 
 def login(request):
+    print("debugging")
     if request.method =="POST":
 
         e_mail = request.POST.get('username', '')
